@@ -8,10 +8,29 @@ export default function UploadPage() {
   const [preview, setPreview] = useState(null);
   const [error, setError] = useState('');
 
+  const getDropErrorMessage = (rejected) => {
+    const messages = rejected.flatMap(({ errors }) =>
+      errors.map(({ code }) => {
+        switch (code) {
+          case 'file-invalid-type':
+            return 'Vain PDF-tiedostot ovat sallittuja. Tarkista tiedostomuoto.';
+          case 'file-too-large':
+            return 'Tiedosto on liian suuri. Suurin sallittu koko on 20 Mt.';
+          case 'too-many-files':
+            return 'Voit ladata vain yhden tiedoston kerrallaan.';
+          default:
+            return 'Tiedoston lataus epäonnistui. Tarkista tiedosto ja yritä uudelleen.';
+        }
+      })
+    );
+
+    return [...new Set(messages)].join(' ');
+  };
+
   const onDrop = useCallback((accepted, rejected) => {
     setError('');
     if (rejected.length > 0) {
-      setError('Vain PDF-tiedostot ovat sallittuja. Tarkista tiedostomuoto.');
+      setError(getDropErrorMessage(rejected));
       return;
     }
     if (accepted.length > 0) {
