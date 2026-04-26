@@ -91,6 +91,9 @@ export default function Layout({ children }) {
               <button
                 className="md:hidden p-2 rounded-lg text-slate-500 hover:bg-slate-100"
                 onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label={mobileOpen ? 'Sulje valikko' : 'Avaa valikko'}
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-menu"
               >
                 {mobileOpen ? (
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +111,7 @@ export default function Layout({ children }) {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-1">
+          <div id="mobile-menu" className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
