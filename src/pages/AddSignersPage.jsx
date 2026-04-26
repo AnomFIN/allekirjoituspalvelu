@@ -45,7 +45,7 @@ export default function AddSignersPage() {
 
   const handleSend = () => {
     if (validate()) {
-      navigate('/upload/sent', { state: { fileName, signers } });
+      navigate('/upload/sent', { state: { fileName, signers, message } });
     }
   };
 
