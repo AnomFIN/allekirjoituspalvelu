@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,10 +36,16 @@ export default function UploadPage() {
     if (accepted.length > 0) {
       const f = accepted[0];
       setFile(f);
-      const url = URL.createObjectURL(f);
-      setPreview(url);
+      setPreview(URL.createObjectURL(f));
     }
   }, []);
+
+  // Revoke the object URL when preview changes or on unmount to avoid memory leaks.
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
