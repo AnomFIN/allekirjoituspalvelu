@@ -7,9 +7,23 @@ export default function DocumentCard({ doc }) {
   const signersTotal = doc.signers?.length || 0;
   const signersCompleted = doc.signers?.filter((s) => s.signed).length || 0;
 
+  const handleActivate = () => {
+    navigate(`/documents/${doc.id}`);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleActivate();
+    }
+  };
+
   return (
     <div
-      onClick={() => navigate(`/documents/${doc.id}`)}
+      onClick={handleActivate}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
       className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-md hover:border-slate-300 transition-all cursor-pointer group"
     >
       <div className="flex items-start justify-between gap-3">
