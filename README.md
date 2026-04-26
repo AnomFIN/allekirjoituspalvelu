@@ -6,7 +6,7 @@ Moderni SaaS-verkkosovellus sähköiseen dokumenttien allekirjoittamiseen.
 
 - 📄 **PDF-lataus** – Drag & drop -toiminnolla
 - 👁️ **PDF-esikatselu** – Selaimessa suoraan
-- �� **Allekirjoittajien hallinta** – Lisää sähköpostilla
+- 👥 **Allekirjoittajien hallinta** – Lisää sähköpostilla
 - 📧 **Allekirjoituspyynnöt** – Automaattiset sähköpostit
 - 📊 **Dokumenttien tila** – Odottaa / Allekirjoitettu / Hylätty
 - 🔒 **Pankkitunnistautuminen** – Placeholder (OP, Nordea, Danske Bank, S-Pankki, Aktia, POP Pankki, OmaSP, Ålandsbanken)
